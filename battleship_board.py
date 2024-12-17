@@ -1,5 +1,5 @@
 #imports 
-from random import randint
+import random
 #ship lenght
 Length_ofShips = [2, 2, 3, 3, 4, 5]
 #gameboards
@@ -25,14 +25,16 @@ def PlaceShips(board):
             if board == ComputerBoard:
                 orientation, row, column = random.choice(['h', 'V']), random.randint(0,11), random.randint(0,11)
                 if check_ShipFit(ShipLenght, row, column, orientation):
-                    if ShipOverlaps(board, row, column, orientation, ShipLenght) == False
-                    #place ship
-                    if orientation == 'H':
-                        for i in range(column, column + ShipLenght):
-                            board[row][i] = 'X'
-                    else: 
-                        for i in range(row, row + ShipLenght)
-                        board[i][column] = 'X'
+                    if ShipOverlaps(board, row, column, orientation, ShipLenght) == False:
+                        #place ship
+                        if orientation == 'H':
+                            for i in range(column, column + ShipLenght):
+                                board[row][i] = 'X'
+                        else:
+                            for i in range(row, row + ShipLenght):
+                                board[i][column]  = 'X'
+                    
+                    
                     
                     break
         else:
@@ -40,31 +42,42 @@ def PlaceShips(board):
             print('Place the ship with a length of ' + str(ShipLenght))
             row, column, orientation = user_input(PlaceShips)
             if check_ShipFit(ShipLenght, row, column, orientation,):
-                if ShipOverlaps(board, row, column, orientation):
+                if ShipOverlaps(board, row, column, orientation, ShipLenght) == False:
+                    if orientation == 'H':
+                        for i in range(column, column + ShipLenght):
+                                board[row][i] = 'X'
+                        else:
+                            for i in range(row, row + ShipLenght):
+                                board[i][column]  = 'X'
+                        PrintBoard(PlayerBoard)
+                        break
+
+
+#checking df ships fit
+def check_ShipFit(ShipLenght, row, column, orientation):
+    if orientation == 'H':
+        if column + ShipLenght > 11:
+            return False
+        else:
+            return True
+    else:
+        if row + ShipLenght > 8:
+            return False
+        else: 
+            return True
+
+#overlapping
+def check_ShipFit(ShipLenght, row, column, orientation):
+    if orientation == 'H':
+        for i in range(column, column + ShipLenght):
+            if board[row][i] == 'X':
+                return True
+    else:
+        for i in range(row, row, + ShipLenght):
+            if board[i][column] == 'X':
+                return True 
+    return False
+   
+                    
             
 
-#ship location
-def get_shipLocation():
-    row = input('Enter a ship row').upper()
-    while row not in '1234567891011':
-        print('Please enter a valid row')
-        row = input('Please enter a ship row')
-        column = input('Please enter a ship column').upper()
-    while column not in 'ABCDEFGHIJKL':
-        print('Please enter a valid column')
-        column = input('please enter a ship colunm').upper()
-    return int(row) - 1, letters_ToNumbers(column)
-
-def count_shipHits(board):
-    count = 0
-    for row in board:
-        for column in row:
-            if column == 'X':
-                count += 1
-                return count
-
-create_ships(Hiddenboard)
-turns = 15
-PrintBoard(Hiddenboard)
-PrintBoard(Gameboard)
-while turns > 0:
