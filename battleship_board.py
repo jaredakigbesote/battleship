@@ -137,7 +137,25 @@ def Count_HitShips(board):
 def turn(board):
     if board == Player_GuessBoard:
         row, column = user_input(Player_GuessBoard)
-        if board[row]
+        if board[row][column] == '-':
+            turn(board)
+        elif ComputerBoard:[row][column] =='X':
+            board[row][column] == 'X'
+        else:
+            board[row][column] = '-'
+    else:
+        row, column = random.randint(0,11), random.randint(0,11)
+        if board[row][column] == '-':
+            turn(board)
+        elif board[row][column] == 'X':
+            turn(board)
+        elif PlayerBoard[row][column] == 'X':
+            board[row][column] = 'X'
+        else:
+            board[row][column] = '-'
+
+        
+
 
 
  
