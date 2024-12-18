@@ -129,9 +129,10 @@ def Count_HitShips(board):
     for row in board:
         for column in row:
             if column in row:
-                if column == 'X'
-                count += 1
+                if column == 'X':
+                    count += 1
         return count
+          
 
 #Turns
 def turn(board):
@@ -139,8 +140,10 @@ def turn(board):
         row, column = user_input(Player_GuessBoard)
         if board[row][column] == '-':
             turn(board)
-        elif ComputerBoard:[row][column] =='X':
-            board[row][column] == 'X'
+        elif board[row][column] == 'X':
+            turn(board)
+        elif ComputerBoard[row][column] == 'X':
+            board[row][column] = 'X'
         else:
             board[row][column] = '-'
     else:
@@ -154,7 +157,29 @@ def turn(board):
         else:
             board[row][column] = '-'
 
-        
+PlaceShips(ComputerBoard)
+PrintBoard(ComputerBoard)
+PlaceShips(PlayerBoard)
+PrintBoard(PlayerBoard)
+
+while True:
+    #player
+    while True:
+        print('Guess a Battleship location')
+        PrintBoard(Player_GuessBoard)
+        turn(Player_GuessBoard)
+        break
+    if Count_HitShips(Player_GuessBoard) == 19:
+        print('You win')
+        break
+    #computer
+    while True:
+        turn(Computer_GuessBoard)
+        break
+    PrintBoard(Computer_GuessBoard)
+    if Count_HitShips(Computer_GuessBoard) == 19:
+        print('You lose')
+        break
 
 
 
