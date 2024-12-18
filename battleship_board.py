@@ -77,7 +77,68 @@ def check_ShipFit(ShipLenght, row, column, orientation):
             if board[i][column] == 'X':
                 return True 
     return False
-   
-                    
-            
+ #user input for ships  
+def user_input(PlaceShips):
+    if PlaceShips == True:
+        while True:
+            try:
+                orientation = input('Enter orientation (H or V):').upper()
+                if orientation == 'H' or orientation == 'v':
+                    break
+            except TypeError:
+                    print('Enter a valid orientation H or V')
+        while True:
+            try:
+                row = input('Enter the row 1-12')
+                if row in '123456789101112':
+                    row = int(row) - 1 
+                    break
+            except ValueError:
+                print('Enter a valid letter between 1-12')    
+        while True:
+            try:
+                column = input('Enter the column of the ship:').upper()
+                if column in 'ABCDEFGHIJKL':
+                    column = letters_to_numbers[column]
+                    break 
+            except KeyError:
+                print('Enter a valid letter between A-L')
+        return row, column, orientation
+    else:
+        while True:
+            try:
+                row = input('Enter a row 1-12 of ships:')
+                if row in '123456789101112':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('enter a valid letter betwwen 1-12')
+        while True:
+            try:
+                column = input('Enter the column of the ship:').upper()
+                if column in 'ABCDEFGHIJKL':
+                    column = letters_to_numbers[column]
+                    break
+            except KeyError:
+                print('Enter a valid letter between A-L')
+        return row, column
+
+#check hits
+def Count_HitShips(board):
+    count = 0 
+    for row in board:
+        for column in row:
+            if column in row:
+                if column == 'X'
+                count += 1
+        return count
+
+#Turns
+def turn(board):
+    if board == Player_GuessBoard:
+        row, column = user_input(Player_GuessBoard)
+        if board[row]
+
+
+ 
 
