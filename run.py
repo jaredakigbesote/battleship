@@ -18,8 +18,10 @@ def print_board(board):
     print('=======================')
     row_number = 1
     for row in board:
-        print(F'{row_number}-')
+        print(f'{row_number}',*row)
         row_number += 1
+
+# 
 
 # place ships
 
@@ -28,7 +30,7 @@ def place_ships(board):
     for ship_lenght in Length_of_ships:
         while True:
             if board == computer_board:
-                orientation, row, column = random.choice(["h", "v"]), random.randint(1, 12), random.randint(1, 12)
+                orientation, row, column = random.choice(["h", "v"]), random.randint(0, 11), random.randint(0, 11)
                 if check_ship_fit(ship_lenght, row, column, orientation):
                     # overlaps
                     if ship_overlaps(ship_lenght, board, row, column, orientation) is False:
@@ -38,7 +40,7 @@ def place_ships(board):
                                 board[row][i] = "X"
                         else:
                             for i in range(row, row + ship_lenght):
-                                board[i][column] = "X"
+                                board[column][i] = "X"
 
                         break
             else:
@@ -82,7 +84,7 @@ def ship_overlaps(ship_lenght, board, row, column, orientation):
                 return True
     else:
         for i in range(row, row, + ship_lenght):
-            if board[i][column] == "X":
+            if board[column][i] == "X":
                 return True
     return False
 # user input for ships
@@ -159,7 +161,7 @@ def turn(board):
         else:
             board[row][column] = "-"
     else:
-        row, column = random.randint(1, 12), random.randint(1, 12)
+        row, column = random.randint(0, 11), random.randint(0, 11)
         if board[row][column] == "-":
             turn(board)
         elif board[row][column] == "X":
