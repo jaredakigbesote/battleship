@@ -41,22 +41,22 @@ def place_ships(board):
                                 board[i][column] = "X"
 
                         break
-        else:
-            place_ships = True
-            print('Place the ship with a length of ' + str(ship_lenght))
-            row, column, orientation = user_input(place_ships)
-            if check_ship_fit(ship_lenght, row, column, orientation):
-                # ship overlaps
-                if ship_overlaps(ship_lenght, board, row, column, orientation) is False:
-                    if orientation == "h":
-                        # place ship
-                        for i in range(column, column + ship_lenght):
-                            board[row][i] = "X"
-                    else:
-                        for i in range(row, row + ship_lenght):
-                            board[i][column] = "X"
-                    print_board(player_board)
-                    break
+            else:
+                place_ships = True
+                print('Place the ship with a length of ' + str(ship_lenght))
+                row, column, orientation = user_input(place_ships)
+                if check_ship_fit(ship_lenght, row, column, orientation):
+                    # ship overlaps
+                    if ship_overlaps(ship_lenght, board, row, column, orientation) is False:
+                        if orientation == "h":
+                            # place ship
+                            for i in range(column, column + ship_lenght):
+                                board[row][i] = "X"
+                        else:
+                            for i in range(row, row + ship_lenght):
+                                board[i][column] = "X"
+                        print_board(player_board)
+                        break
             
 
 # checking df ships fit
@@ -92,7 +92,7 @@ def user_input(place_ships):
     if place_ships is True:
         while True:
             try:
-                orientation = input("Enter orientation (h or v):").upper()
+                orientation = input("Enter orientation (h or v):").lower()
                 if orientation == "h" or orientation == "v":
                     break
             except TypeError:
