@@ -56,7 +56,7 @@ def place_ships(board):
                                 board[row][i] = "X"
                         else:
                             for i in range(row, row + ship_lenght):
-                                board[i][column] = "X"
+                                board[column][i] = "X"
                         print_board(player_board)
                         break
             
