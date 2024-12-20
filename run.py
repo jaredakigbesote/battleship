@@ -8,17 +8,17 @@ computer_board = [[' '] * 12 for x in range(12)]
 player_guess_board = [[' '] * 12 for x in range(12)]
 computer_guess_board = [[' '] * 12 for x in range(12)]
 
-letters_to_numbers = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9, 'K': 10, 'L': 11}
+letters_to_numbers = {'A':  0, 'B':  1, 'C':  2, 'D':  3, 'E':  4, 'F':  5, 'G':  6, 'H':  7, 'I':  8, 'J':  9, 'K': 10, 'L': 11}
 
 # Functions
 
 
 def print_board(board):
-    print('A B C D E F G H I J K L')
-    print('=======================')
+    print('   A B C D E F G H I J K L')
+    print('   =======================')
     row_number = 1
     for row in board:
-        print(f'{row_number}',*row)
+        print(f'{row_number}|',*row)
         row_number += 1
 
 # 
