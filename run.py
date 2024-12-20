@@ -44,18 +44,20 @@ def place_ships(board):
             place_ships = True
             print('Place the ship with a length of ' + str(ship_lenght))
             row, column, orientation = user_input(place_ships)
-            if check_ship_fit(ship_lenght, row, column, orientation,):
+            if check_ship_fit(ship_lenght, row, column, orientation):
                 # ship overlaps
                 if ship_overlaps(ship_lenght, board, row, column, orientation) is False:
                     if orientation == 'H':
                         # place ship
                         for i in range(column, column + ship_lenght):
                             board[row][i] = 'X'
-                        else:
-                            for i in range(row, row + ship_lenght):
-                                board[i][column] = 'X'
-                        print_board(player_board)
-                        break
+                    else:
+                        for i in range(row, row + ship_lenght):
+                            board[i][column] = 'X'
+                    print_board(player_board)
+                    break
+                        
+                    
 
 
 # checking df ships fit
